@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import fetch from "isomorphic-fetch"
-import Input from '../components/forms/Input';
 import { add, filterResults } from '../utilities';
 import { macroTypes } from '../configs';
 import Card from '../components/Card';
-import Header from '../components/Header';
+import Header from '../components/global/Header';
+import PageTitle from '../components/global/PageTitle';
 import RestaurantOptions from '../components/RestaurantOptions';
+import Calculator from '../components/Calculator';
 
 function IndexPage({
   menuItems
@@ -36,20 +37,12 @@ function IndexPage({
   return (
     <React.Fragment>
       <Header />
-      <h1 className="pageTitle">What Should I Eat?</h1>
-      <div className={`wrapper ${!!showOptions ? 'show' : ''}`}>
-        {Object.keys(macroTypes).map((m, i) => (
-          <Input
-            key={i}
-            type={m}
-            onChange={onInputChange}
-          />
-        ))}
-        <p className="calories" data-type="Calories">
-          <span className="value">{calories && Object.values(calories).reduce(add)}</span>
-          <span className="key">Calories</span>
-        </p>
-      </div>
+      <PageTitle title="What Should I Eat?" />
+      <Calculator
+        shouldShow={showOptions}
+        calories={calories}
+        onChange={onInputChange}
+      />
       
       <RestaurantOptions
         onClick={showMenuItems}
@@ -70,18 +63,6 @@ function IndexPage({
       
       <style jsx>
       {`
-        .wrapper {
-          position: fixed;
-          right: 0;
-          padding: 0 10px 10px 10px;
-          border: 1px solid rgba(0, 0, 0, .05);
-          border-right: 0;
-          background-color: white;
-          opacity: 0;
-          transition: opacity .5s;
-          transition-delay: 1s;
-        }
-
         .results {
           list-style-type: none;
           display: flex;
