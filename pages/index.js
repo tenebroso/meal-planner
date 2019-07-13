@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import fetch from "isomorphic-fetch"
+import tl8 from '../utilities/tl8';
 import { filterResults } from '../utilities';
 import { macroTypes } from '../configs';
 import { colors, typography } from '../styles';
@@ -40,7 +41,7 @@ function IndexPage({
     <>
       <Header />
 
-      <PageTitle title="What Should I Eat?" />
+      <PageTitle title={tl8.t('global.title')} />
 
       <Calculator
         shouldShow={showOptions}

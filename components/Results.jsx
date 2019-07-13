@@ -1,6 +1,7 @@
 import { add } from '../utilities';
 import { listReset } from '../styles';
 import Card from './Card';
+import tl8 from '../utilities/tl8';
 
 export const Results = ({
   shouldShow,
@@ -18,7 +19,7 @@ export const Results = ({
       ))}
     </ul>
     ) : (
-      !!Object.values(calories).reduce(add) && <p className="result">Sorry, there are no results!</p>
+      !!Object.values(calories).reduce(add) && <p className="result">{tl8.t('global.results.none')}</p>
     )}
     <style jsx>
     {`
