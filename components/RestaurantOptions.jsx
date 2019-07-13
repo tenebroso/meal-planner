@@ -1,5 +1,5 @@
-import React from 'react';
 import { restaurants } from '../configs';
+import { colors } from '../styles';
 
 const RestaurantOptions = ({
   onClick,
@@ -51,18 +51,18 @@ const RestaurantOptions = ({
           text-decoration: none;
           width: 75px;
           height: 75px;
-          border: 5px solid white;
+          border: 5px solid ${colors.white};
           padding: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: white;
+          background: ${colors.white};
           margin: 0 10px;
           transition: border-color .35s;
         }
 
         a:hover {
-          border-color: #504d48;
+          border-color: ${colors.grey.dark};
         }
 
         img {

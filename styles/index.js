@@ -10,9 +10,16 @@ export const colors = {
   grey: {
     dark: '#313638',
     light: '#E8E9EB',
-  }
+  },
+  red: '#9E0C08',
 }
 
-export const animations = {
-  fadeIn: ''
+export const borders = {
+  radius: '5px',
 }
+
+export const listReset = `
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`

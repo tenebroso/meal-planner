@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import fetch from "isomorphic-fetch"
-import { add, filterResults } from '../utilities';
+import { filterResults } from '../utilities';
 import { macroTypes } from '../configs';
 import { colors, typography } from '../styles';
-import Card from '../components/Card';
+import { fadeIn } from '../styles/animations';
 import Header from '../components/global/Header';
 import PageTitle from '../components/global/PageTitle';
 import RestaurantOptions from '../components/RestaurantOptions';
 import Calculator from '../components/Calculator';
+import Results from '../components/Results';
 
 function IndexPage({
   menuItems
@@ -36,9 +37,11 @@ function IndexPage({
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Header />
+
       <PageTitle title="What Should I Eat?" />
+
       <Calculator
         shouldShow={showOptions}
         calories={calories}
@@ -48,50 +51,12 @@ function IndexPage({
       <RestaurantOptions
         onClick={showMenuItems}
       />
-        
-      {!!options.length ? (
-        <ul className={`results ${!!showOptions ? 'show' : ''}`}>
-          {options.map((result, i) => (
-            <Card
-              food={result}
-              key={i}
-            />
-          ))}
-        </ul>
-        ) : (
-          !!Object.values(calories).reduce(add) && <p className="result">Sorry, there are no results!</p>
-        )}
-      
-      <style jsx>
-      {`
-        .results {
-          list-style-type: none;
-          display: flex;
-          justify-content: center;
-          padding: 0;
-          flex-wrap: wrap;
-          max-width: 50vw;
-          margin: 0 auto;
-          transform: translate(0, -125px);
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity .5s;
-          transition-delay: 1s;
-        }
 
-        .show {
-          opacity: 1;
-          pointer-events: unset;
-        }
-
-        .result {
-          text-transform: uppercase;
-          font-weight: bold;
-          font-size: .75rem;
-          text-align: center;
-        }
-      `}
-      </style>
+      <Results
+        shouldShow={showOptions}
+        menuOptions={options}
+        calories={calories}
+      />
 
       <style global jsx>
         {`
@@ -99,31 +64,6 @@ function IndexPage({
             background-color: ${colors.grey.light};
             font-family: ${typography.font.serif};
             margin: 0;
-          }
-
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-            }
-          
-            to {
-              opacity: 1;
-            }
-          }
-          
-          .fadeIn {
-            animation-name: fadeIn;
-            animation-duration: 1s;
-            animation-fill-mode: both;
-          }          
-
-          .pageTitle {
-            margin: 0 0 2rem;
-            text-align: center;
-            padding: 10px;
-            background-color: ${colors.grey.dark};
-            display: block;
-            color: ${colors.white};
           }
 
           .key {
@@ -147,10 +87,12 @@ function IndexPage({
           .no-edit {
             pointer-events: none;
           }
+
+          ${fadeIn}
         `}
       </style>
       
-    </React.Fragment>
+    </>
   );
 }
 
