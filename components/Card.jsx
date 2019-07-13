@@ -1,8 +1,9 @@
-import React from 'react';
 import { macroLabels, categories } from '../configs';
+import { typography, colors, borders, listReset } from '../styles';
+import tl8 from '../utilities/tl8';
 
 const Card = ({ food }) => (
-  <React.Fragment>
+  <>
     <li className="fadeIn result-card">
       <h3><i className={`fas fa-lg ${categories[food.category]}`}></i> {food.name}</h3>
       <div className="result-content">
@@ -13,7 +14,7 @@ const Card = ({ food }) => (
       </div>
       {food.remaining && (
         <div className="remaining">
-          <h3>Remaining</h3>
+          <h3>{tl8.t('nutrients.remaining')}</h3>
           <ol>
             {food.remaining.map((n, i) => <li key={i} data-type={`${macroLabels[Object.keys(n)]}`}>{Object.values(n)}g</li>)}
           </ol>
@@ -23,17 +24,11 @@ const Card = ({ food }) => (
 
     <style jsx>
     {`
-      ol {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-
       .result-card,
       .remaining {
         display: block;
-        background-color: #504d48;
-        border-radius: 5px;
+        background-color: ${colors.grey.dark};
+        border-radius: ${borders.radius};
         margin: 10px;
         flex: 0 1 27%;
         font-size: .8rem;
@@ -54,18 +49,18 @@ const Card = ({ food }) => (
       }
 
       h3 {
-        background: #9e0c08;
-        color: white;
+        background: ${colors.red};
+        color: ${colors.white};
         text-align: center;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
+        border-top-right-radius: ${borders.radius};
+        border-top-left-radius: ${borders.radius};
         padding: 5px;
         margin: 0;
-        font-family: 'PT Sans';
+        font-family: ${typography.font.sans};
       }
 
       ol {
-        
+        ${listReset}
         padding-left: 12px;
         display: flex;
         justify-content: center;
@@ -99,7 +94,7 @@ const Card = ({ food }) => (
         text-transform: uppercase;
         font-weight: bold;
         font-size: .75rem;
-        color: #313638;
+        color: ${colors.grey.dark};
       }
 
       ol li,
@@ -124,7 +119,7 @@ const Card = ({ food }) => (
       }
     `}
     </style>
-  </React.Fragment>
+  </>
 );
 
 export default Card;
