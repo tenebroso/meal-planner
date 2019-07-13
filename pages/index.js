@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import fetch from "isomorphic-fetch"
 import { add, filterResults } from '../utilities';
 import { macroTypes } from '../configs';
+import { colors, typography } from '../styles';
 import Card from '../components/Card';
 import Header from '../components/global/Header';
 import PageTitle from '../components/global/PageTitle';
@@ -95,8 +96,8 @@ function IndexPage({
       <style global jsx>
         {`
           body {
-            background-color: #E8E9EB;
-            font-family: 'DM Serif Text', serif;
+            background-color: ${colors.grey.light};
+            font-family: ${typography.font.serif};
             margin: 0;
           }
 
@@ -120,9 +121,9 @@ function IndexPage({
             margin: 0 0 2rem;
             text-align: center;
             padding: 10px;
-            background-color: #313638;
+            background-color: ${colors.grey.dark};
             display: block;
-            color: white;
+            color: ${colors.white};
           }
 
           .key {
@@ -131,13 +132,13 @@ function IndexPage({
             font-weight: bold;
             text-transform: uppercase;
             padding-top: 5px;
-            font-family: 'PT Sans';
+            font-family: ${typography.font.sans};
           }
 
           .value {
             padding: 10px 10px 10px 0;
             border: none;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid ${colors.grey.light};
             outline: none;
             display: block;
             font-size: .75rem;
