@@ -1,6 +1,7 @@
 import { macroTypes } from '../configs';
 import { add } from '../utilities';
 import Input from '../components/forms/Input';
+import tl8 from '../utilities/tl8';
 
 const Calculator = ({
   shouldShow = false,
@@ -18,7 +19,7 @@ const Calculator = ({
       ))}
       <p className="calories" data-type="Calories">
         <span className="value">{calories && Object.values(calories).reduce(add)}</span>
-        <span className="key">Calories</span>
+        <span className="key">{tl8.t('nutrients.calories')}</span>
       </p>
     </div>
     <style jsx>

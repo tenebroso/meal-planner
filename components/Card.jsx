@@ -1,5 +1,6 @@
 import { macroLabels, categories } from '../configs';
 import { typography, colors, borders, listReset } from '../styles';
+import tl8 from '../utilities/tl8';
 
 const Card = ({ food }) => (
   <>
@@ -13,7 +14,7 @@ const Card = ({ food }) => (
       </div>
       {food.remaining && (
         <div className="remaining">
-          <h3>Remaining</h3>
+          <h3>{tl8.t('nutrients.remaining')}</h3>
           <ol>
             {food.remaining.map((n, i) => <li key={i} data-type={`${macroLabels[Object.keys(n)]}`}>{Object.values(n)}g</li>)}
           </ol>
