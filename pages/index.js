@@ -98,7 +98,7 @@ function IndexPage({
   );
 }
 
-IndexPage.getInitialProps = async () => {
+IndexPage.getInitialProps = () => {
   return loadFirebase().firestore().collection('foods')
     .get()
     .then((snapshot) => {
