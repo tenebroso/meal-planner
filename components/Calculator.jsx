@@ -9,7 +9,7 @@ const Calculator = ({
   onChange,
 }) => (
   <>
-    <div className={`wrapper ${!!shouldShow ? 'show' : ''}`}>
+    <div>
       {Object.keys(macroTypes).map((m, i) => (
         <Input
           key={i}
@@ -23,24 +23,17 @@ const Calculator = ({
       </p>
     </div>
     <style jsx>
-      {`
-        .wrapper {
-          position: fixed;
-          right: 0;
-          padding: 0 10px 10px 10px;
-          border: 1px solid rgba(0, 0, 0, .05);
-          border-right: 0;
-          background-color: white;
-          opacity: 0;
-          transition: opacity .5s;
-          transition-delay: 1s;
-        }
-
-        .show {
-          opacity: 1;
-          pointer-events: unset;
-        }
-      `}
+      {
+        `
+          div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 80px;
+            margin-right: 80px;
+          }
+        `
+      }
     </style>
   </>
 );

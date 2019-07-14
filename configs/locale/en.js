@@ -1,6 +1,6 @@
 export default {
   "global": {
-    "app": "Food Finder",
+    "app": "Gram Cruncher",
     "title": "What Should I Eat?",
   },
   "nutrients": {
