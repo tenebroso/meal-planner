@@ -98,20 +98,18 @@ function IndexPage({
   );
 }
 
-IndexPage.getInitialProps = async ({ req }) => {
-  return loadFirebase().then(firebase => {
-    return firebase.firestore().collection('foods')
-      .get()
-      .then((snapshot) => {
-        let data = [];
-        snapshot.forEach((doc) =>  {
-          data.push({
-            id: doc.id, 
-            ...doc.data()
-          });
+IndexPage.getInitialProps = async () => {
+  return loadFirebase().firestore().collection('foods')
+    .get()
+    .then((snapshot) => {
+      let data = [];
+      snapshot.forEach((doc) =>  {
+        data.push({
+          id: doc.id, 
+          ...doc.data()
         });
-      return { menuItems: data };
-    });
+      });
+    return { menuItems: data };
   });
 };
 
