@@ -5,8 +5,9 @@ import { filterResults } from '../utilities';
 import { macroTypes } from '../configs';
 import { colors, typography } from '../styles';
 import { fadeIn } from '../styles/animations';
-import Header from '../components/global/Header';
-import PageTitle from '../components/global/PageTitle';
+import Header from '../components/global/Head';
+import SiteHeader from '../components/global/SiteHeader';
+import Rail from '../components/global/Rail';
 import RestaurantOptions from '../components/RestaurantOptions';
 import Calculator from '../components/Calculator';
 import Results from '../components/Results';
@@ -41,13 +42,15 @@ function IndexPage({
     <>
       <Header />
 
-      <PageTitle title={tl8.t('global.title')} />
+      <SiteHeader />
 
-      <Calculator
-        shouldShow={showOptions}
-        calories={calories}
-        onChange={onInputChange}
-      />
+      <Rail>
+        <Calculator
+          shouldShow={showOptions}
+          calories={calories}
+          onChange={onInputChange}
+        />
+      </Rail>
       
       <RestaurantOptions
         onClick={showMenuItems}

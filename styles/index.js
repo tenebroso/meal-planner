@@ -6,6 +6,7 @@ export const typography = {
 }
 
 export const colors = {
+  black: '#222222',
   white: '#FFFFFF',
   grey: {
     dark: '#313638',
