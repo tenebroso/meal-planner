@@ -16,7 +16,7 @@ export const Logo = () => (
             border-radius: 50%;
             background: ${colors.grey.dark};
             padding: 20px;
-            transform: translate(-10px, -10px);
+            transform: translate(-12px, 0);
             fill: ${colors.white};
           }
 

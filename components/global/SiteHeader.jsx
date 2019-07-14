@@ -10,7 +10,7 @@ const SiteHeader = () => (
     <style jsx>
       {`
         header {
-          background-color: ${colors.grey.dark};
+          background-color: ${colors.black};
           color: ${colors.white};
           display: flex;
           align-items: center;

@@ -32,7 +32,9 @@ const Rail = ({
       <a
           onClick={onInteract}
         >
-        <Expander />
+        <Expander
+          isExpanded={isExpanded}
+        />
       </a>
       <div
         className={isExpanded && `slide-in`}>
@@ -103,7 +105,7 @@ const Rail = ({
           }
           
           a {
-            background: ${colors.grey.dark};
+            background: ${colors.black};
             display: flex;
             justify-content: center;
             align-items: center;
@@ -118,7 +120,7 @@ const Rail = ({
           }
 
           a:hover {
-            background-color: ${colors.black};
+            background-color: ${colors.grey.dark};
           }
 
           a:hover > div {
