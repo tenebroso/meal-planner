@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import fetch from "isomorphic-fetch"
-import tl8 from '../utilities/tl8';
 import { filterResults } from '../utilities';
 import { macroTypes } from '../configs';
 import { colors, typography } from '../styles';
@@ -16,7 +15,7 @@ function IndexPage({
   menuItems
 }) {
   const [calories, setCalories] = useState(macroTypes);
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState(filterResults(menuItems, calories));
   const [showOptions, setShowOptions] = useState(false);
 
   const onInputChange = (e) => {
@@ -32,11 +31,6 @@ function IndexPage({
   };
 
   const showMenuItems = () => setShowOptions(!showOptions);
-
-  useEffect(() => {
-    const results = filterResults(menuItems, calories);
-    setOptions(results);
-  }, []);
 
   return (
     <>
