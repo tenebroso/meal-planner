@@ -1,3 +1,9 @@
+export const googleApi = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
+
+export const stubLat = 41.965380;
+
+export const stubLng = -87.706940;
+
 export const macroTypes = {
   'Total Fat': 0,
   'Carbohydrates': 0,

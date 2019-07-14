@@ -1,4 +1,30 @@
+import { googleApi, stubLat, stubLng } from '../configs';
+
 export const add = (a, b) => a + b;
+
+export const getLocations = (lat = stubLat, lng = stubLng, setResults) => {
+  
+  const latLng = new google.maps.LatLng(41.96538,-87.70694);
+  const gMap = new google.maps.Map(document.getElementById('map'), {
+    center: latLng,
+    zoom: 15
+  });
+
+  const request = {
+    location: latLng,
+    radius: '1000',
+    type: ['restaurant']
+  };
+
+  const callback = (results, status) => {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      setResults(results);
+    }
+  }
+
+  const service = new google.maps.places.PlacesService(gMap);
+  service.nearbySearch(request, callback);
+}
 
 export const filterResults = (menuItems, calories) => {
 
