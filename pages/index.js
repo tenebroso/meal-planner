@@ -98,8 +98,8 @@ function IndexPage({
   );
 }
 
-IndexPage.getInitialProps = () => {
-  return loadFirebase().firestore().collection('foods')
+IndexPage.getInitialProps = () =>
+  loadFirebase().firestore().collection('foods')
     .get()
     .then((snapshot) => {
       let data = [];
@@ -110,7 +110,6 @@ IndexPage.getInitialProps = () => {
         });
       });
     return { menuItems: data };
-  });
-};
+});
 
 export default IndexPage;
