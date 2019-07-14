@@ -105,7 +105,10 @@ IndexPage.getInitialProps = async ({ req }) => {
     .then((snapshot) => {
       let data = [];
       snapshot.forEach((doc) =>  {
-        data.push(Object.assign({ id: doc.id }, doc.data()));
+        data.push({
+          id: doc.id, 
+          ...doc.data()
+        });
       });
       return data;
     });
