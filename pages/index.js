@@ -100,19 +100,15 @@ function IndexPage({
 
 IndexPage.getInitialProps = async ({ req }) => {
   let firebase = await loadFirebase();
-  let result = await new Promise((resolve, reject) => {
-    firebase.firestore().collection('foods')
-      .get()
-      .then((snapshot) => {
-        let data = [];
-        snapshot.forEach((doc) =>  {
-          data.push(Object.assign({ id: doc.id }, doc.data()));
-        });
-        resolve(data);
-      })
-      .catch((err) => console.log(err))
-    }
-  );
+  let result = await firebase.firestore().collection('foods')
+    .get()
+    .then((snapshot) => {
+      let data = [];
+      snapshot.forEach((doc) =>  {
+        data.push(Object.assign({ id: doc.id }, doc.data()));
+      });
+      return data;
+    });
 
   return { menuItems: result };
 };
