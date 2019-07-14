@@ -29,15 +29,15 @@ const Rail = ({
 
   return (
     <>
-      <div
-        className={isExpanded && `slide-in`}>
-        {children}
-      </div>
       <a
           onClick={onInteract}
         >
         <Expander />
       </a>
+      <div
+        className={isExpanded && `slide-in`}>
+        {children}
+      </div>
       <style jsx>
         {
           `
@@ -59,6 +59,11 @@ const Rail = ({
             animation-duration: 1s;
             animation-fill-mode: both;
             justify-content: center;
+            opacity: 0;
+          }
+
+          div.slide-in {
+            opacity: 1;
           }
 
           @keyframes slideIn {
@@ -83,13 +88,13 @@ const Rail = ({
       
           .slide-in {
             animation-name: slideIn;
-            animation-duration: 1s;
+            animation-duration: .5s;
             animation-fill-mode: both;
           } 
           
           .slide-out {
             animation-name: slideOut;
-            animation-duration: 1s;
+            animation-duration: .5s;
             animation-fill-mode: both;
           } 
 
@@ -100,19 +105,24 @@ const Rail = ({
           a {
             background: ${colors.grey.dark};
             display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 100vh;
             position: fixed;
             left: 0;
             top: 0;
-            height: 100vh;
-            align-items: center;
             cursor: pointer;
             transition: background-color .35s ease;
-            width: 32px;
-            justify-content: center;
+            z-index: 5;
           }
 
           a:hover {
             background-color: ${colors.black};
+          }
+
+          a:hover > div {
+            opacity: 1;
           }
           `
         }
