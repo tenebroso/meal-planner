@@ -99,21 +99,20 @@ function IndexPage({
 }
 
 IndexPage.getInitialProps = async ({ req }) => {
-  let firebase = await loadFirebase();
-  let result = await firebase.firestore().collection('foods')
-    .get()
-    .then((snapshot) => {
-      let data = [];
-      snapshot.forEach((doc) =>  {
-        data.push({
-          id: doc.id, 
-          ...doc.data()
+  return loadFirebase().then(firebase => {
+    return firebase.firestore().collection('foods')
+      .get()
+      .then((snapshot) => {
+        let data = [];
+        snapshot.forEach((doc) =>  {
+          data.push({
+            id: doc.id, 
+            ...doc.data()
+          });
         });
-      });
-      return data;
+      return { menuItems: data };
     });
-
-  return { menuItems: result };
+  });
 };
 
 export default IndexPage;
