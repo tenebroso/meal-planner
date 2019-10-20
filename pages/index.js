@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import fetch from "isomorphic-fetch"
 import { filterResults, getLocations } from '../utilities';
 import { macroTypes } from '../configs';
 import { colors, typography } from '../styles';

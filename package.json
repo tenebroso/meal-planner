@@ -8,7 +8,6 @@
     "classnames": "^2.2.6",
     "dotenv": "^8.0.0",
     "firebase": "^6.3.0",
-    "isomorphic-fetch": "^2.2.1",
     "next": "latest",
     "next-images": "^1.1.2",
     "node-polyglot": "^2.3.1",
