@@ -21,8 +21,8 @@
 - [ ] Identify routes
 - [ ] Create address input component
 - [ ] Add geolocation
-- [ ] Identify best fit for food database
-- [ ] Create database
+- [x] Identify best fit for food database
+- [x] Create database
 - [ ] Identify initial curated restaurants
 - [ ] Identify best option for populating data from curated restaurants
 - [ ] Populate data source with nutrition data from curated restaurants

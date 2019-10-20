@@ -9,11 +9,8 @@ import Rail from '../components/global/Rail';
 import RestaurantOptions from '../components/RestaurantOptions';
 import Calculator from '../components/Calculator';
 import Results from '../components/Results';
-import { loadFirebase } from '../lib/db';
 
-function IndexPage({
-  menuItems
-}) {
+function IndexPage() {
   const [calories, setCalories] = useState(macroTypes);
   // const [options, setOptions] = useState(filterResults(menuItems, calories));
   const [options, setOptions] = useState([]);
@@ -111,19 +108,5 @@ function IndexPage({
     </>
   );
 }
-
-IndexPage.getInitialProps = () =>
-  loadFirebase().firestore().collection('foods')
-    .get()
-    .then((snapshot) => {
-      let data = [];
-      snapshot.forEach((doc) =>  {
-        data.push({
-          id: doc.id, 
-          ...doc.data()
-        });
-      });
-    return { menuItems: data };
-});
 
 export default IndexPage;
