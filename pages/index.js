@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import fetch from "isomorphic-fetch"
-import { filterResults } from '../utilities';
+import { filterResults, getLocations } from '../utilities';
 import { macroTypes } from '../configs';
 import { colors, typography } from '../styles';
 import { fadeIn } from '../styles/animations';
@@ -10,15 +9,13 @@ import Rail from '../components/global/Rail';
 import RestaurantOptions from '../components/RestaurantOptions';
 import Calculator from '../components/Calculator';
 import Results from '../components/Results';
-import { loadFirebase } from '../lib/db';
 
-function IndexPage({
-  menuItems
-}) {
+function IndexPage() {
   const [calories, setCalories] = useState(macroTypes);
   // const [options, setOptions] = useState(filterResults(menuItems, calories));
   const [options, setOptions] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
+  const [locationResults, setLocationResults] = useState([]);
 
   console.log(menuItems);
 
@@ -35,6 +32,8 @@ function IndexPage({
   };
 
   const showMenuItems = () => setShowOptions(!showOptions);
+
+  const getMapResults = () => getLocations(null, null, setLocationResults);
 
   return (
     <>
@@ -53,6 +52,18 @@ function IndexPage({
       <RestaurantOptions
         onClick={showMenuItems}
       />
+
+      <a onClick={getMapResults}>
+        Click Me!
+      </a>
+
+      {console.log(locationResults)}
+
+      <ul>
+      {locationResults.map((r) => <li key={r.id}>{r.name}</li>)}
+      </ul>
+
+      <div id="map"></div>
 
       <Results
         shouldShow={showOptions}
@@ -97,19 +108,5 @@ function IndexPage({
     </>
   );
 }
-
-IndexPage.getInitialProps = () =>
-  loadFirebase().firestore().collection('foods')
-    .get()
-    .then((snapshot) => {
-      let data = [];
-      snapshot.forEach((doc) =>  {
-        data.push({
-          id: doc.id, 
-          ...doc.data()
-        });
-      });
-    return { menuItems: data };
-});
 
 export default IndexPage;
